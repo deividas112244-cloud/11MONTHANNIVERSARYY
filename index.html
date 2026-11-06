@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deividas and Shoushane | 11 Months</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0b0b24;
+    --dusk: #1d1546;
+    --lav: #b9a7ff;
+    --glow: #f3d9a4;
+    --pink: #ff8fb8;
+    --text: #ece8ff;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100vh;
+    font-family: 'Quicksand', system-ui, sans-serif;
+    color: var(--text);
+    background: radial-gradient(ellipse at 50% 0%, var(--dusk), var(--night) 65%) fixed;
+    overflow-x: hidden;
+  }
+  .star {
+    position: fixed; width: 2px; height: 2px; border-radius: 50%;
+    background: #fff; pointer-events: none; z-index: 0;
+    animation: twinkle ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: .15; } to { opacity: .95; } }
+  main { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 56px 20px 80px; text-align: center; }
+  .moon {
+    width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 28px;
+    background: radial-gradient(circle at 35% 35%, #fff8e6, var(--glow) 70%);
+    box-shadow: 0 0 60px 18px rgba(243,217,164,.28);
+  }
+  .names {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    font-weight: 500; font-style: italic; color: var(--glow);
+    text-shadow: 0 0 24px rgba(243,217,164,.35);
+  }
+  .sub { margin-top: 8px; color: var(--lav); font-size: 1.05rem; }
+  .big {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 700; font-size: clamp(5.5rem, 26vw, 9.5rem); line-height: 1;
+    margin-top: 28px; color: var(--text);
+    text-shadow: 0 0 40px rgba(185,167,255,.55);
+  }
+  .big-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; color: var(--pink); margin-top: -6px; }
+
+  h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500; font-size: 1.9rem; margin: 64px 0 18px; color: var(--glow);
+  }
+  .counter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .counter div { padding: 16px 4px; border-top: 1px solid rgba(185,167,255,.35); }
+  .counter b { display: block; font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 8vw, 2.8rem); font-weight: 700; }
+  .counter span { font-size: .85rem; color: var(--lav); }
+  .since { margin-top: 12px; font-size: .9rem; color: var(--lav); opacity: .85; }
+
+  button {
+    font: inherit; font-weight: 600; color: var(--night); background: var(--lav);
+    border: 0; border-radius: 999px; padding: 13px 28px; cursor: pointer;
+    box-shadow: 0 0 24px rgba(185,167,255,.4); transition: transform .15s;
+  }
+  button:hover { transform: scale(1.05); }
+  button:focus-visible { outline: 3px solid var(--glow); outline-offset: 3px; }
+
+  .reasons { list-style: none; padding: 0; margin: 0 0 22px; text-align: left; }
+  .reasons li {
+    padding: 14px 0 14px 18px; border-left: 2px solid var(--pink);
+    margin-bottom: 12px; line-height: 1.6; animation: fade .7s ease both;
+  }
+  @keyframes fade { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+
+  .letter {
+    display: none; margin-top: 26px; padding: 30px 24px; text-align: left; line-height: 1.8;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(185,167,255,.3);
+    border-radius: 18px; letter-spacing: .01em;
+  }
+  .letter.open { display: block; animation: fade .8s ease both; }
+
+  footer { margin-top: 64px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; color: var(--pink); }
+
+  .heart { position: fixed; bottom: -40px; color: var(--pink); pointer-events: none; z-index: 2; animation: float linear forwards; }
+  @keyframes float { to { transform: translateY(-110vh) rotate(25deg); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .star, .reasons li, .letter.open { animation: none; }
+    .heart { display: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="moon" aria-hidden="true"></div>
+  <h1 class="names">Deividas &amp; Shoushane</h1>
+  <p class="sub">Happy 11 month anniversary</p>
+  <div class="big">11</div>
+  <div class="big-label">months of us</div>
+
+  <h2>Time since we became us</h2>
+  <div class="counter" aria-live="off">
+    <div><b id="d">0</b><span>days</span></div>
+    <div><b id="h">0</b><span>hours</span></div>
+    <div><b id="m">0</b><span>minutes</span></div>
+    <div><b id="s">0</b><span>seconds</span></div>
+  </div>
+  <p class="since">Counting from December 7 at 3:14 AM Lithuanian time</p>
+
+  <h2>Reasons I love you</h2>
+  <ul class="reasons" id="reasons"></ul>
+  <button id="more" type="button">Show a reason</button>
+
+  <h2>My message to you</h2>
+  <button id="open" type="button">Open my message</button>
+  <section class="letter" id="letter">
+    SHOUSHANE ELEVEN MONTHS AGO ON A NIGHT IN DECEMBER MY LIFE CHANGED WITHOUT ME EVEN KNOWING IT AND TODAY I WANT TO TELL YOU WHAT YOU MEAN TO ME BECAUSE YOU DESERVE TO HEAR IT OUT LOUD WE HAVE LIVED THROUGH REAL UPS AND DOWNS YOU AND ME AND I WON'T PRETEND THEY WERE EASY BUT I WOULDN'T TRADE A SINGLE ONE BECAUSE EACH ONE BROUGHT US CLOSER AND MADE WHAT WE HAVE STRONGER THAN I EVER IMAGINED IT SADLY HURT THAT WE COULDN'T MEET AS OFTEN AS OUR HEARTS WANTED AND THERE WERE NIGHTS I MISSED YOU SO MUCH IT ACHED BUT YOU NEVER LET THE MILES WIN AND YOU KEPT SHOWING UP WITH YOUR WARMTH AND YOUR WORDS AND YOUR LOVE AND THAT IS WHY I FELL EVEN DEEPER EVERY SINGLE DAY I AM SO THANKFUL FOR THE CALLS THAT RAN UNTIL SUNRISE AND THE LAUGHS THAT CAME OUT OF NOWHERE AND THE WAY YOU SOMEHOW ALWAYS KNOW WHAT I NEED BEFORE I SAY IT I PROMISE YOU THAT I WILL KEEP CHOOSING YOU ON THE GOOD DAYS AND THE HARD DAYS AND EVERY DAY IN BETWEEN AND ONE DAY SOON I WILL HOLD YOU IN MY ARMS AND NEVER WANT TO LET GO UNTIL THEN KNOW THAT MY HEART IS YOURS AND IT HAS BEEN SINCE THE VERY START HAPPY 11 MONTHS MY LOVE I LOVE YOU TO THE MOON AND BACK YOURS FOREVER DEIVIDAS
+  </section>
+
+  <footer>Forever yours, Deividas</footer>
+</main>
+
+<script>
+  // Stars
+  for (var i = 0; i < 70; i++) {
+    var st = document.createElement('div');
+    st.className = 'star';
+    st.style.left = Math.random() * 100 + 'vw';
+    st.style.top = Math.random() * 100 + 'vh';
+    st.style.animationDuration = (2 + Math.random() * 4) + 's';
+    st.style.animationDelay = (Math.random() * 3) + 's';
+    document.body.appendChild(st);
+  }
+
+  // Counter (Lithuanian time, UTC+2 in December)
+  var start = new Date('2025-12-07T03:14:00+02:00').getTime();
+  function tick() {
+    var diff = Math.max(0, Date.now() - start);
+    var sec = Math.floor(diff / 1000);
+    document.getElementById('d').textContent = Math.floor(sec / 86400);
+    document.getElementById('h').textContent = Math.floor(sec % 86400 / 3600);
+    document.getElementById('m').textContent = Math.floor(sec % 3600 / 60);
+    document.getElementById('s').textContent = sec % 60;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Hearts
+  function hearts() {
+    for (var i = 0; i < 22; i++) {
+      var h = document.createElement('span');
+      h.className = 'heart';
+      h.textContent = '\u2665';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (14 + Math.random() * 26) + 'px';
+      h.style.animationDuration = (4 + Math.random() * 4) + 's';
+      h.style.animationDelay = (Math.random() * 1.5) + 's';
+      document.body.appendChild(h);
+      setTimeout(function (el) { el.remove(); }.bind(null, h), 10000);
+    }
+  }
+
+  // Reasons
+  var reasons = [
+    "YOU MAKE ME SMILE EVEN ON MY HARDEST DAYS",
+    "YOU ARE SO PATIENT AND UNDERSTANDING WITH ME",
+    "YOU CHOSE US EVERY TIME THINGS GOT HARD",
+    "YOUR VOICE ON OUR LATE NIGHT CALLS IS MY FAVORITE SOUND",
+    "YOU MAKE EVEN THE SILLIEST MESSAGES FEEL SPECIAL",
+    "YOU STAYED STRONG WITH ME THROUGH THE DISTANCE",
+    "YOU TAUGHT ME WHAT IT REALLY MEANS TO LOVE SOMEONE",
+    "WITH YOU I KNOW THE BEST IS STILL AHEAD",
+    "YOU LISTEN TO ME LIKE WHAT I SAY ACTUALLY MATTERS",
+    "YOU MAKE ME WANT TO BE A BETTER PERSON EVERY DAY",
+    "YOUR LAUGH CAN FIX A BAD DAY IN SECONDS",
+    "YOU NEVER MADE ME FEEL ALONE EVEN WHEN WE WERE SO FAR APART",
+    "YOU ARE THE FIRST PERSON I WANT TO TELL EVERYTHING TO",
+    "YOU BELIEVE IN ME EVEN WHEN I DON'T BELIEVE IN MYSELF",
+    "YOU MAKE ORDINARY MOMENTS FEEL LIKE MY FAVORITE MEMORIES",
+    "YOU ARE KIND AND CARING IN WAYS THAT MAKE THE WORLD BRIGHTER",
+    "YOU MAKE WAITING TO SEE YOU WORTH EVERY SINGLE DAY",
+    "YOU ARE MY BEST FRIEND AND MY LOVE AT THE SAME TIME",
+    "YOU FEEL LIKE HOME TO ME NO MATTER HOW FAR YOU ARE",
+    "YOU ARE SHOUSHANE AND THAT IS THE BEST REASON OF ALL"
+  ];
+  var shown = 0;
+  var list = document.getElementById('reasons');
+  var more = document.getElementById('more');
+  more.addEventListener('click', function () {
+    if (shown < reasons.length) {
+      var li = document.createElement('li');
+      li.textContent = reasons[shown++];
+      list.appendChild(li);
+      hearts();
+      if (shown === reasons.length) more.textContent = 'That is all for now but I have a million more';
+    }
+  });
+
+  // Letter
+  var btn = document.getElementById('open');
+  var letter = document.getElementById('letter');
+  btn.addEventListener('click', function () {
+    var open = letter.classList.toggle('open');
+    btn.textContent = open ? 'Close my message' : 'Open my message';
+    if (open) hearts();
+  });
+</script>
+</body>
+</html>
